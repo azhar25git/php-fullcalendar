@@ -24,12 +24,13 @@ DROP TABLE IF EXISTS `events`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `start` datetime DEFAULT NULL,
+  `start` datetime NOT NULL,
   `end` datetime DEFAULT NULL,
   `title` text,
-  `uid` varchar(100) DEFAULT NULL,
+  `repeating` int(11) NOT NULL DEFAULT '0',
+  `repeating_events_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,9 +39,38 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
-INSERT INTO `events` VALUES (2,'2019-10-27 12:00:00','2019-10-27 19:00:00','test','brtniv07n2s31gcfrp2u9p63hk'),(3,'2019-10-28 01:00:00','2019-10-28 10:00:00','abc','brtniv07n2s31gcfrp2u9p63hk'),(6,'2019-11-10 09:00:00','2019-11-10 15:30:00','test','gubm8nu42tplcsba65anhqmql6'),(8,'2019-11-04 00:00:00','2019-11-04 05:00:00','yes','gubm8nu42tplcsba65anhqmql6'),(9,'2019-11-05 04:00:00','2019-11-05 10:30:00','no','gubm8nu42tplcsba65anhqmql6'),(10,'2019-11-06 01:00:00','2019-11-06 11:30:00','yeah','gubm8nu42tplcsba65anhqmql6');
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `repeating_events`
+--
+
+DROP TABLE IF EXISTS `repeating_events`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `repeating_events` (
+  `repeating_events_id` int(11) NOT NULL AUTO_INCREMENT,
+  `repeat_interval` int(11) NOT NULL,
+  `repeat_times` int(11) NOT NULL DEFAULT '1',
+  `repeat_total` int(11) NOT NULL,
+  PRIMARY KEY (`repeating_events_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `repeating_events`
+--
+
+LOCK TABLES `repeating_events` WRITE;
+/*!40000 ALTER TABLE `repeating_events` DISABLE KEYS */;
+INSERT INTO `repeating_events` VALUES (7,2,1,3),(8,2,1,3),(9,1,1,3),(10,1,1,3),(11,1,1,2),(12,1,1,2),(13,2,1,4),(14,2,1,3);
+/*!40000 ALTER TABLE `repeating_events` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'testdb'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -51,4 +81,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-04 22:07:49
+-- Dump completed on 2019-11-07 18:13:59
