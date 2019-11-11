@@ -91,7 +91,8 @@ $(document).ready(function(){
            // We don't want this to act as a link so cancel the link action
            e.preventDefault();
            doDelete();
-           window.location = plugin_url;
+          //  window.location = plugin_url;
+          location.reload(false);
        });
        
       //  $('#deleteGroup').on('click', function (e) {
@@ -171,7 +172,8 @@ $(document).ready(function(){
                   //      end: endTime,
                   //  },
                   //  true);
-                   window.location = plugin_url;
+                  //  window.location = plugin_url;
+                  location.reload(false);
                },
                error: function (json, error) {
                 //  console.log('error: ', error);
