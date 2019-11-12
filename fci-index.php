@@ -62,11 +62,12 @@ include("fci-functions.php");
     <hr />
 
     <!-- Load styles -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/fullcalendar.css" rel="stylesheet" />
     <link href="css/fullcalendar.print.css" rel="stylesheet" media="print" />
-    <!-- <link href="css/bootswatch.css" rel="stylesheet" /> -->
+    <link href="css/slate.css" rel="stylesheet" />
 
 
     <!-- add calander in this div -->
