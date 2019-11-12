@@ -92,7 +92,8 @@ $(document).ready(function(){
            // We don't want this to act as a link so cancel the link action
            e.preventDefault();
            doDelete();
-           window.location = plugin_url;
+          //  window.location = plugin_url;
+          location.reload(false);
        });
        
        $('#deleteGroup').on('click', function (e) {
@@ -165,6 +166,7 @@ $(document).ready(function(){
                data: data,
                type: "POST",
                success: function(json) {
+<<<<<<< HEAD
                   console.log('success: ', json);
                    $("#calendar").fullCalendar('renderEvent',
                    {
@@ -175,6 +177,19 @@ $(document).ready(function(){
                    },
                    true);
                    window.location = plugin_url;
+=======
+                  // console.log('success: ', json);
+                  //  $("#calendar").fullCalendar('renderEvent',
+                  //  {
+                  //      id: json.id,
+                  //      title: title,
+                  //      start: startTime,
+                  //      end: endTime,
+                  //  },
+                  //  true);
+                  //  window.location = plugin_url;
+                  location.reload(false);
+>>>>>>> 041105aff24615aa713e1859a66db490e358c090
                },
                error: function (json, error) {
                  console.log('error: ', error);
