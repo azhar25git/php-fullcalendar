@@ -9,7 +9,7 @@
  * @license MIT
  * @link https://fiverr.com/flybycom
  * 
- * @version 2.1
+ * @version 3.0
  * 
  */
 // session_start();
