@@ -8,6 +8,7 @@ $(document).ready(function(){
             right: "month,agendaWeek,agendaDay,listMonth"
           },
           defaultView: "month",
+          themeSystem: "bootstrap3",
           editable: true,
           selectable: true,
           allDaySlot: false,
@@ -94,11 +95,12 @@ $(document).ready(function(){
            window.location = plugin_url;
        });
        
-      //  $('#deleteGroup').on('click', function (e) {
-      //      // We don't want this to act as a link so cancel the link action
-      //      e.preventDefault();
-      //      doGroupDelete();
-      //  });
+       $('#deleteGroup').on('click', function (e) {
+           // We don't want this to act as a link so cancel the link action
+           e.preventDefault();
+           doGroupDelete();
+           window.location = plugin_url;
+       });
        
        function doDelete(){
            $("#calendarModal").modal('hide');
@@ -112,8 +114,6 @@ $(document).ready(function(){
                         $("#calendar").fullCalendar('removeEvents',eventID);
                    else
                         return false;
-                    
-                   
                }
            });
        }
@@ -121,17 +121,20 @@ $(document).ready(function(){
        function doGroupDelete(){
            $("#calendarModal").modal('hide');
            var eventID = $('#eventID').val();
+
            $.ajax({
                url: plugin_url,
                data: 'action=delete&id='+eventID+'&group=group',
                type: "POST",
                success: function(json) {
                  console.log(json);
-                   if(json == 1)
-                        $("#calendar").fullCalendar('removeEvents',eventID);
+                   if ($.isArray(json))
+                    for (var i = 0; i < json.length; i++) {
+                      $("#calendar").fullCalendar('removeEvents', json[i].id);
+                    }
+                        // $("#calendar").fullCalendar('removeEvents',eventID);
                    else
                         return false;
-                  console.log(json);
                    
                },
                error: function(json, error) {
@@ -162,19 +165,19 @@ $(document).ready(function(){
                data: data,
                type: "POST",
                success: function(json) {
-                  // console.log('success: ', json);
-                  //  $("#calendar").fullCalendar('renderEvent',
-                  //  {
-                  //      id: json.id,
-                  //      title: title,
-                  //      start: startTime,
-                  //      end: endTime,
-                  //  },
-                  //  true);
+                  console.log('success: ', json);
+                   $("#calendar").fullCalendar('renderEvent',
+                   {
+                       id: json.id,
+                       title: title,
+                       start: startTime,
+                       end: endTime,
+                   },
+                   true);
                    window.location = plugin_url;
                },
                error: function (json, error) {
-                //  console.log('error: ', error);
+                 console.log('error: ', error);
                }
            });
            

@@ -9,7 +9,7 @@
  * @license MIT
  * @link https://fiverr.com/flybycom
  * 
- * @version 2.0
+ * @version 2.1
  * 
  */
 // session_start();
@@ -63,9 +63,11 @@ include("fci-functions.php");
 
     <!-- Load styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
+    
     <link href="css/fullcalendar.css" rel="stylesheet" />
     <link href="css/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <!-- <link href="css/bootswatch.css" rel="stylesheet" /> -->
+
 
     <!-- add calander in this div -->
     <div class="container">
@@ -128,13 +130,14 @@ include("fci-functions.php");
                     <h4 id="modalTitle" class="modal-title"></h4>
                     <div id="modalWhen" style="margin-top:5px;"></div>
 
-                    <!-- <?php //include('fci-event-create.php'); ?> -->
+                    <!-- <?php //include('fci-event-create.php'); 
+                            ?> -->
                 </div>
                 <input type="hidden" id="eventID" />
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                     <button type="submit" class="btn btn-danger" id="deleteButton">Delete</button>
-                    <!-- <button class="btn btn-danger" id="deleteGroup">Delete Repeats</button> -->
+                    <button class="btn btn-danger" id="deleteGroup">Delete All</button>
                 </div>
             </div>
         </div>

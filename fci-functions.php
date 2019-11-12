@@ -102,22 +102,31 @@ if (isset($_POST['action']) or isset($_GET['view'])) {
 
         if($_POST['group'] == 'group'){
 
-            // $ids = mysqli_query($connection, "select `repeating_events_id` from `events` where id = `" . mysqli_real_escape_string($connection, $_POST['id']) . "`");
-            // header('Content-Type: application/json');
-            // echo '{"id":"' . $ids . '"}';
-            // mysqli_query($connection, "DELETE `events`, `repeating_events` FROM `events` LEFT JOIN `repeating_events` ON `events.repeating_events_id` = `repeating_events.repeating_events_id` WHERE `events.repeating_events_id` = '" . mysqli_real_escape_string($connection, $_POST["id"]) . "'");
-            // if (mysqli_affected_rows($connection) > 0) {
-            //     echo "1";
-            // }
+            $sql = "SELECT `repeating_events_id` FROM `events` WHERE id = '" . mysqli_real_escape_string($connection, $_POST['id']) . "' LIMIT 1";
+            $result = mysqli_query($connection, $sql);
+            while ($row = mysqli_fetch_assoc($result)) {
+                $events[] = $row;
+            }
+            $result2 = mysqli_query($connection, "SELECT `id` FROM `events` WHERE `repeating_events_id` = '" . $events[0]['repeating_events_id'] . "'");
+            while ($row2 = mysqli_fetch_assoc($result2)) {
+                $eventsDel[] = $row2;
+            }
+            // 
+            mysqli_query($connection, "DELETE FROM `events` WHERE `repeating_events_id` = '" . $events[0]['repeating_events_id'] . "'");
+            // echo json_encode($events[0]['repeating_events_id']);
+ 
+            if (mysqli_affected_rows($connection) > 0) {
+                echo json_encode($eventsDel);
+            }
             exit;
         } else {
             mysqli_query($connection, "DELETE from `events` where id = '" . mysqli_real_escape_string($connection, $_POST["id"]) . "'");
-            if (mysqli_affected_rows($connection) > 0) {
-                echo "1";
-            }
-            exit;
+            
         }
-        
+        if (mysqli_affected_rows($connection) > 0) {
+            echo "1";
+        }
+        exit;
         
     }
 }
