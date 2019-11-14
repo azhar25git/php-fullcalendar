@@ -8,7 +8,7 @@ $(document).ready(function(){
             right: "month,agendaWeek,agendaDay,listMonth"
           },
           defaultView: "month",
-          themeSystem: "bootstrap3",
+          themeSystem: "bootstrap",
           editable: true,
           selectable: true,
           allDaySlot: false,
@@ -19,6 +19,8 @@ $(document).ready(function(){
           events: plugin_url + "?view=1",
 
           eventClick: function(event, jsEvent, view) {
+            var isMonthView = ($(jsEvent.target).parents('.fc-month-view')[0]) ? true : false;
+            
             endtime = $.fullCalendar.moment(event.end).format("h:mm");
             starttime = $.fullCalendar
               .moment(event.start)
@@ -28,21 +30,30 @@ $(document).ready(function(){
             $("#modalWhen").text(mywhen);
             $("#eventID").val(event.id);
             $("#calendarModal").modal();
+            if(isMonthView == true) {
+              $(".modal-footer").hide();
+            }else {
+              $(".modal-footer").show();
+            }
           },
 
           //header and other values
           select: function(start, end, jsEvent) {
-            endtime = $.fullCalendar.moment(end).format("h:mm");
-            starttime = $.fullCalendar
-              .moment(start)
-              .format("dddd, MMMM Do YYYY, h:mm");
-            var mywhen = starttime + " - " + endtime;
-            start = moment(start).format();
-            end = moment(end).format();
-            $("#createEventModal #startTime").val(start);
-            $("#createEventModal #endTime").val(end);
-            $("#createEventModal #when").text(mywhen);
-            $("#createEventModal").modal("toggle");
+            var isMonthView = ($(jsEvent.target).parents('.fc-month-view')[0]) ? true : false;
+            if (isMonthView == false) {
+              endtime = $.fullCalendar.moment(end).format("h:mm");
+              starttime = $.fullCalendar
+                .moment(start)
+                .format("dddd, MMMM Do YYYY, h:mm");
+              var mywhen = starttime + " - " + endtime;
+              start = moment(start).format();
+              end = moment(end).format();
+              $("#createEventModal #startTime").val(start);
+              $("#createEventModal #endTime").val(end);
+              $("#createEventModal #when").text(mywhen);
+              $("#createEventModal").modal("toggle");
+            }
+            
           },
           eventDrop: function(event, delta) {
             $.ajax({

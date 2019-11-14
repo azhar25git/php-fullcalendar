@@ -16,9 +16,6 @@ if (isset($_POST['action']) or isset($_GET['view'])) {
         exit;
 
     } elseif ($_POST['action'] == "add") {
-        // header('Content-Type: application/json');
-        // echo '{"id":"' . $_POST['repeating'] . '"}';
-        // exit;
         
         // check if the event is repeating or not
         if ($_POST['repeating'] == 1) {
@@ -54,8 +51,6 @@ if (isset($_POST['action']) or isset($_GET['view'])) {
             }
 
             for($i=0;$i<$r_total;$i++) {
-                
-                // date("Y-m-d H:i:s", strtotime('+'. $day_int .' days', strtotime($_POST["start"])) );
                 
                 $modified_start = date("Y-m-d H:i:s", strtotime('+'. $i . $r_int_text , strtotime($_POST["start"])));
                 $modified_end = date("Y-m-d H:i:s", strtotime('+' . $i . $r_int_text , strtotime($_POST["end"])));
@@ -111,9 +106,10 @@ if (isset($_POST['action']) or isset($_GET['view'])) {
             while ($row2 = mysqli_fetch_assoc($result2)) {
                 $eventsDel[] = $row2;
             }
-            // 
+            // delete all repeating events with the same id provided
             mysqli_query($connection, "DELETE FROM `events` WHERE `repeating_events_id` = '" . $events[0]['repeating_events_id'] . "'");
-            // echo json_encode($events[0]['repeating_events_id']);
+            // delete the repeating event id from the table itself
+            mysqli_query($connection, "DELETE FROM `repeating_events` WHERE `repeating_events_id` = '" . $events[0]['repeating_events_id'] . "'");
  
             if (mysqli_affected_rows($connection) > 0) {
                 echo json_encode($eventsDel);

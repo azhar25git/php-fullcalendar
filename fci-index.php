@@ -9,7 +9,7 @@
  * @license MIT
  * @link https://fiverr.com/flybycom
  * 
- * @version 3.0
+ * @version 3.3
  * 
  */
 // session_start();
@@ -43,31 +43,20 @@ include("fci-functions.php");
 
     </div>
     <style type="text/css">
-        .block a:hover {
-            color: silver;
+        #calendar {
+            width: 100%;
         }
 
-        .block a {
+        .fc-event-container {
             color: #fff;
-        }
-
-        .block {
-            position: fixed;
-            background: #2184cd;
-            padding: 20px;
-            z-index: 1;
-            top: 240px;
         }
     </style>
     <hr />
 
     <!-- Load styles -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
-
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="css/fullcalendar.css" rel="stylesheet" />
     <link href="css/fullcalendar.print.css" rel="stylesheet" media="print" />
-    <link href="css/slate.css" rel="stylesheet" />
 
 
     <!-- add calander in this div -->
@@ -86,23 +75,18 @@ include("fci-functions.php");
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Add Event</h4>
+                    <button type="button" class="close" data-dismiss="modal" >&times;</button>
                 </div>
                 <div class="modal-body">
-                    <!-- <div class="control-group">
-                        <label class="control-label" for="title">Event:</label>
-                        <div class="field desc">
-                            <input class="form-control" id="title" name="title" placeholder="Event" type="text" value="">
-                        </div>
-                    </div> -->
+
                     <?php include('fci-event-create.php'); ?>
 
                     <input type="hidden" id="startTime" />
                     <input type="hidden" id="endTime" />
 
 
-
+                    <br />
                     <div class="control-group">
                         <label class="control-label" for="when">When:</label>
                         <div class="controls controls-row" id="when" style="margin-top:5px;">
@@ -124,8 +108,8 @@ include("fci-functions.php");
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Event Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div id="modalBody" class="modal-body">
                     <h4 id="modalTitle" class="modal-title"></h4>
@@ -150,13 +134,12 @@ include("fci-functions.php");
     </div>
 
     <!-- Load scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="js/moment.min.js"></script>
     <script src="js/fullcalendar.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
 
 </body>
 

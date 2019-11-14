@@ -1,3 +1,11 @@
+body {
+    background: #272b30;
+    color: #ffffff;
+}
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid rgba(0, 0, 0, 0.6);
+}
 .btn {
     display: inline-block;
     font-weight: 400;
@@ -9,6 +17,7 @@
     -ms-user-select: none;
     user-select: none;
     background-color: transparent;
+    /* background-color: #232628; */
     border: 1px solid transparent;
     padding: 0.75rem 1rem;
     font-size: 0.9375rem;
@@ -19,10 +28,14 @@
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }
-.fc button {
+.btn:hov {
+    background: #3a3f44;
+}
+.fc-button {
     color: #fff;
     background-image: linear-gradient(#8a9196, #7A8288 60%, #70787d);
-    border-color: rgba(0, 0, 0, 0.6);
+    /* border-color: rgba(0, 0, 0, 0.6); */
+    background-color: #232628;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -36,4 +49,38 @@
 }
 .fc-unthemed .fc-today {
     background-color: rgba(255, 255, 255, 0.075);
+}
+.fc-state-hover {
+    background-color: inherit;
+}
+.modal-content {
+    background-color: #3a3f44;
+    color: inherit;
+}
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid rgba(0, 0, 0, 0.6);
+}
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-popover .fc-header,
+.fc-unthemed .fc-list-heading td {
+    background: inherit;
+}
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #32383e;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    border-radius: 0.25rem;
 }
